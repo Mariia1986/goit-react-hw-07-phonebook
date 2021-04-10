@@ -46,12 +46,12 @@ import {
 const contactsReducers = combineReducers({
   items: reducers.contactsReducer,
   filter: filterReducer,
-  loader:reducers.loader,
-  error:reducers.error,
+  loader: reducers.loader,
+  error: reducers.error,
 });
 
 const rootReducer = combineReducers({
-  contacts:  contactsReducers,
+  contacts: contactsReducers,
 });
 
 const middleware = [

@@ -3,7 +3,6 @@ import s from "./ContactList.module.css";
 
 class ContactList extends Component {
   componentDidMount() {
-    // console.log(this.props.fetchCont())
     this.props.fetchCont();
   }
   onClickDelete = (id) => {
@@ -11,13 +10,14 @@ class ContactList extends Component {
   };
 
   render() {
-    const { filteredCont } = this.props;
-    console.log(filteredCont);
-   
+    const { filteredCont, isLoading } = this.props;
 
     return (
-      <ul className={s.contaktList}>
-        {filteredCont.map((el) => (
+      <>
+        {isLoading && <h2>Загружаем...</h2>}
+        {
+          <ul className={s.contaktList}>
+            {filteredCont.map((el) => (
               <li className={s.contaktListItem} key={el.id}>
                 <p className={s.contaktListName}>
                   {el.name} : {el.number}
@@ -31,7 +31,9 @@ class ContactList extends Component {
                 </button>
               </li>
             ))}
-      </ul>
+          </ul>
+        }
+      </>
     );
   }
 }

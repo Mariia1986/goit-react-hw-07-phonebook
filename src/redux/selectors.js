@@ -14,3 +14,5 @@ export const filteredContacts = createSelector(
       name.toLowerCase().includes(filter.toLocaleLowerCase())
     )
 );
+
+export const getLoading = (state) => state.contacts.loader;

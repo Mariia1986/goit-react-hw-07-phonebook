@@ -65,13 +65,6 @@ const loader = createReducer(false,{
 
 })
 
-// const error=  createReducer(null, {
-  
-//   [fetchContactsError]:"Something happen wrong",
- 
-//  [ addContactsError]:"Something happen wrong",
- 
-//  [ deleteContactsError]:"Something happen wrong",
-// })
+
 
 export default {contactsReducer, loader};
