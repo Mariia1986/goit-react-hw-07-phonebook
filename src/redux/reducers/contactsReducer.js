@@ -43,14 +43,15 @@ import {fetchContactsRequest,
 //   { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
 // ];
 
-const contactsReducer = createReducer(state, {
+const contactsReducer =  createReducer([], {
+  [fetchContactsSuccess]:(_, { payload }) => payload,
   [addContactsSuccess]: (state, { payload }) => [...state, payload],
   [deleteContactsSuccess]: (state, { payload }) => {
     return state.filter((el) => el.id !== payload);
   },
 });
 
-const loader=createReducer(false,{
+const loader = createReducer(false,{
   [fetchContactsRequest]:()=>true,
   [fetchContactsSuccess]:()=>false,
   [fetchContactsError]:()=>false,
@@ -64,13 +65,13 @@ const loader=createReducer(false,{
 
 })
 
-const error=createReaduser(null, {
+// const error=  createReducer(null, {
   
-  [fetchContactsError]:"Something happen wrong",
+//   [fetchContactsError]:"Something happen wrong",
  
- [ addContactsError]:"Something happen wrong",
+//  [ addContactsError]:"Something happen wrong",
  
- [ deleteContactsError]:"Something happen wrong",
-})
+//  [ deleteContactsError]:"Something happen wrong",
+// })
 
-export default {contactsReducer, loader,  error};
+export default {contactsReducer, loader};

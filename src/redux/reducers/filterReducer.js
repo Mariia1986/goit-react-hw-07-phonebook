@@ -17,8 +17,8 @@ import { filterContacts}from "../actions/userActions"
 
 // ===========Redux Toolkit===============
 
-const filterReducer=createReducer("",{
-  [filterContacts]:((_,{payload})=> {return payload})
+const filterReducer=createReducer('',{
+  [filterContacts]:((_,{payload})=> payload)
 })
 
 export default filterReducer

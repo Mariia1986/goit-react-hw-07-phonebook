@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import s from "./Filter.module.css";
 import PropTypes from "prop-types";
-import userActions from "../../redux/actions/userActions";
+import { filterContacts } from "../../redux/actions/userActions";
+import { filterContact} from '../../redux/selectors'
 
 class Filter extends Component {
   handleFilter = (e) => {
@@ -26,16 +27,16 @@ class Filter extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.items,
-  filter: state.contacts.filter,
+  
+  filter: filterContact(state),
 });
 const mapDispatchToProps = {
-  filterAct: userActions.filterContacts,
+  filterAct: filterContacts,
 };
 
 Filter.propTypes = {
-  filter: PropTypes.string.isRequired,
-  search: PropTypes.func.isRequired,
+  filter: PropTypes.string,
+  search: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filter);

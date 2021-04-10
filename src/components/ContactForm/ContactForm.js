@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import s from "./ContactForm.module.css";
-import userActions from "../../redux/actions/userActions";
+import operation from "../../redux/operation";
+import { getContacts } from "../../redux/selectors";
 
 class ContactForm extends Component {
   state = {
@@ -22,8 +23,8 @@ class ContactForm extends Component {
   submitForm = (e) => {
     e.preventDefault();
     const { name, number } = this.state;
-    const newContact = {  name, number };
-    // this.props.onSubmit(newContact);
+    const newContact = { name, number };
+
     if (
       this.props.contacts.some(
         (el) => el.name.toLowerCase() === newContact.name.toLowerCase()
@@ -33,9 +34,6 @@ class ContactForm extends Component {
       return;
     }
     this.props.addContact(newContact);
-
-
-
 
     this.reset();
   };
@@ -61,7 +59,7 @@ class ContactForm extends Component {
         <label className={s.label}>
           Number
           <input
-           placeholder="09755555555"
+            placeholder="09755555555"
             required
             onChange={this.handleContactInfo}
             pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
@@ -82,16 +80,14 @@ class ContactForm extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  contacts: state.contacts.items,
- 
+  contacts: getContacts(state),
 });
 const mapDispatchToProps = {
-  addContact: userActions.addContact,
-  
+  addContact: operation.addContacts,
 };
 
 ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
